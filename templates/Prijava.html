@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block sadrzaja %}
+   <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Prijavi se</legend>
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.lozinka.label(class="form-control-label") }}
+                    {% if form.lozinka.errors %}
+                        {{ form.lozinka(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.lozinka.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.lozinka(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-check">
+                    {{ form.zapamti(class="form-check-input") }}
+                    {{ form.zapamti.label(class="form-check-label") }}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.prijava(class="btn btn-outline-info") }}
+            </div>
+    		<div class="border-top pt-3">
+    			<small class="text-muted">
+    				Nemas korisnicki racun?<a class="ml-2" href="{{ url_for('Registracija') }}">Registriraj se!</a>
+    			</small>
+    		</div>
+    </div>
+{% endblock sadrzaja %}
+	

@@ -1,0 +1,19 @@
+{% extends "Layout.html" %}
+{% block sadrzaja %}
+	{% for restoran in restorani %}
+		<article class="media content-section">
+      <img class="rounded-circle article-img" src="{{ url_for('static', filename='slike_profila/' + restoran.autor.profilna_slika) }}">
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-2" href="#">{{restoran.autor.korisnicko_ime }}</a>
+      <small class="text-muted">{{restoran.datum.strftime('%Y-%m-%d') }}</small>
+    </div>
+    <h2><a class="article-title" href="{{url_for('RestoranP', restoran_id=restoran.id)}}">{{ restoran.ime_restorana }}</a></h2>
+    <p class="article-content">Lokacija: <b>{{ restoran.lokacija }}</b></p>
+    <p class="article-content">Adresa: <b>{{ restoran.adresa }}</b></p>
+    <p class="article-content" style="border: 1px solid #61892F; border-radius: 2px;">{{ restoran.opis }}</p>
+    <p class="article-content">Ocjena: {{ restoran.ocjena }}</p>
+  </div>
+</article>
+	{% endfor %}
+{% endblock sadrzaja %}

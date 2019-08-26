@@ -1,0 +1,48 @@
+{% extends "Layout.html" %}
+{% block sadrzaja %}
+    <article class="media content-section">
+      <img class="rounded-circle article-img" src="{{ url_for('static', filename='slike_profila/' + restoran.autor.profilna_slika) }}">
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-2" href="#">{{ restoran.autor.korisnicko_ime }}</a>
+      <small class="text-muted">{{ restoran.datum.strftime('%Y-%m-%d') }}</small>
+    </div>
+    <h2 class="article-title">{{ restoran.ime_restorana}}</h2>
+    <p class="article-content">Lokacija: <b>{{ restoran.lokacija }}</b></p>
+    <p class="article-content">Adresa: <b>{{ restoran.adresa }}</b></p>
+    <p class="article-content" style="border: 1px solid #61892F; border-radius: 2px;">{{ restoran.opis }}</p>
+    <p class="article-content">Ocjena: {{ restoran.ocjena }}</p>
+  </div>
+
+</article>
+<div class="botuni" style="float:right;">
+  {%if restoran.autor == current_user %}
+        <div>
+          <a class="btn btn-secondary btn-sm m-1" href="{{ url_for('Azuriraj_RestoranP', restoran_id=restoran.id) }}" style="background-color:white; color:black;">Azuriraj</a>
+          <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#obrisiModal">Obrisi</button>
+        </div>
+      {% endif %}
+    </div>
+<!-- Modal -->
+<div class="modal fade" id="obrisiModal" tabindex="-1" role="dialog" aria-labelledby="obrisiModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="obrisiModalLabel" style="color:black;">Obrisi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Da li ste sigurni da zelite obrisati recenziju?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Odustani</button>
+        <form action="{{ url_for('Obrisi_Restoran', restoran_id=restoran.id) }}" method="POST">
+          <input class="btn btn-danger" type="submit" value="Obrisi">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock sadrzaja %}

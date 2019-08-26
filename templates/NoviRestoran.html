@@ -1,0 +1,84 @@
+{% extends 'layout.html' %}
+{% block sadrzaja %}
+<style>
+.novirestoran{
+  background: #222629;
+  padding: 10px 20px;
+  border: 1px solid #61892F;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+</style>
+	  <div class="novirestoran">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">{{legend}}</legend>
+                <div class="form-group">
+                    {{ form.naslov.label(class="form-control-label") }}
+                    {% if form.naslov.errors %}
+                        {{ form.naslov(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.naslov.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.naslov(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                 <div class="form-group">
+                    {{ form.lokacija.label(class="form-control-label") }}
+                    {% if form.lokacija.errors %}
+                        {{ form.lokacija(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.lokacija.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.lokacija(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.adresa.label(class="form-control-label") }}
+                    {% if form.adresa.errors %}
+                        {{ form.adresa(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.adresa.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.adresa(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.opis.label(class="form-control-label") }}
+                    {% if form.opis.errors %}
+                        {{ form.opis(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.opis.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.opis(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                 <div class="form-group">
+				 
+                    <div class="ocjena">
+                    {{form.ocjena(style="list-style-type:none;")}} 
+                </div>          
+                	
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.unesi(class="btn btn-outline-info") }}
+            </div>
+           </form>
+     <div>
+
+{% endblock sadrzaja%}
